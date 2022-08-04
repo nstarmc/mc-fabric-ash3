@@ -1,30 +1,30 @@
 {
   "schemaVersion": 1,
-  "id": "umollu_ash",
+  "id": "ash2",
   "version": "${version}",
-  "name": "ASH - Another Simple HUD",
-  "description": "ASH - Another Simple HUD with FPS count and coordinates.",
+  "name": "ASH 2 - Another Sophisticated HUD",
+  "description": "ASH 2 - Another Sophisticated HUD with FPS count, coordinates, light level and biome",
   "authors": [
-    "umollu"
+    "umollu, kuuhaku"
   ],
   "contact": {
-    "homepage": "https://umollu.com/",
-    "sources": "https://github.com/umollu/ash",
-    "issues": "https://github.com/umollu/ash/issues"
+    "homepage": "TODO",
+    "sources": "https://github.com/miraisoft-de/mc-fabric-ash",
+    "issues": "https://github.com/miraisoft-de/mc-fabric-ash/issues"
   },
   "license": "MIT",
-  "icon": "assets/umollu_ash/icon.png",
+  "icon": "assets/ash2/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "com.umollu.ash.AshMod"
+      "de.miraisoft.ash2.AshMod"
     ],
     "modmenu": [
-      "com.umollu.ash.config.AshMenuIntegration"
+      "de.miraisoft.ash2.config.AshMenuIntegration"
     ]
   },
   "mixins": [
-    "umollu_ash.mixins.json"
+    "ash2.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.14.8",

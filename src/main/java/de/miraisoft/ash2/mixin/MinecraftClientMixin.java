@@ -1,4 +1,4 @@
-package com.umollu.ash.mixin;
+package de.miraisoft.ash2.mixin;
 
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;

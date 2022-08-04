@@ -1,9 +1,9 @@
-package com.umollu.ash;
+package de.miraisoft.ash2;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
-import com.umollu.ash.config.AshConfig;
 
+import de.miraisoft.ash2.config.AshConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;

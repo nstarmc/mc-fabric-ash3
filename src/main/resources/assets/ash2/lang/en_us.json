@@ -1,0 +1,11 @@
+{
+  "text.autoconfig.ash2.title" : "ASH Config",
+  "text.autoconfig.ash2.option.showHud" : "Show HUD",
+  "text.autoconfig.ash2.option.hudColor" : "HUD text color",
+  "text.autoconfig.ash2.option.showFps" : "Show FPS",
+  "text.autoconfig.ash2.option.showCoords" : "Show coordinates",
+  "text.autoconfig.ash2.option.showDirection" : "Show direction",
+  "text.autoconfig.ash2.option.align" : "HUD screen horizontal alignment",
+  "text.autoconfig.ash2.option.verticalAlign" : "HUD screen vertical alignment",
+  "key.ash2.toggleAsh" : "Toggle ASH HUD"
+}

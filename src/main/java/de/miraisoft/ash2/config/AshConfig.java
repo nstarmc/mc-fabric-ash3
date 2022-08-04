@@ -1,6 +1,6 @@
-package com.umollu.ash.config;
+package de.miraisoft.ash2.config;
 
-import com.umollu.ash.AshMod;
+import de.miraisoft.ash2.AshMod;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;

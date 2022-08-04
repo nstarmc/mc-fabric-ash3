@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.umollu.ash.mixin",
+  "package": "de.miraisoft.ash2.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
     "InGameHudMixin",

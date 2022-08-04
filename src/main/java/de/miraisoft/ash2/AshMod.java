@@ -1,6 +1,5 @@
-package com.umollu.ash;
+package de.miraisoft.ash2;
 
-import com.umollu.ash.config.AshConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigManager;
 import me.shedaniel.autoconfig.gui.registry.GuiRegistry;
@@ -18,16 +17,18 @@ import net.minecraft.text.Text;
 import java.util.Collections;
 import java.util.List;
 
+import de.miraisoft.ash2.config.AshConfig;
+
 public class AshMod implements ClientModInitializer {
 
-    public static final String MOD_ID = "umollu_ash";
+    public static final String MOD_ID = "ash2";
     public static ConfigManager configManager;
 
     @Override
     public void onInitializeClient() {
         configManager = (ConfigManager) AutoConfig.register(AshConfig.class, GsonConfigSerializer::new);
 
-        KeyBinding toggleAsh = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.umollu_ash.toggleAsh", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "key.categories.misc"));
+        KeyBinding toggleAsh = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.ash2.toggleAsh", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "key.categories.misc"));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (toggleAsh.wasPressed()) {
