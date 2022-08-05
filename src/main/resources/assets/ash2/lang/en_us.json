@@ -5,7 +5,8 @@
   "text.autoconfig.ash2.option.showFps" : "Show FPS",
   "text.autoconfig.ash2.option.showCoords" : "Show coordinates",
   "text.autoconfig.ash2.option.showDirection" : "Show direction",
-  "text.autoconfig.ash2.option.align" : "HUD screen horizontal alignment",
-  "text.autoconfig.ash2.option.verticalAlign" : "HUD screen vertical alignment",
+  "text.autoconfig.ash2.option.showLightLevel" : "Show light level",
+  "text.autoconfig.ash2.option.showBiome" : "Show biome",
+  "text.autoconfig.ash2.option.conciseCoords" : "Concise coords",
   "key.ash2.toggleAsh" : "Toggle ASH HUD"
 }

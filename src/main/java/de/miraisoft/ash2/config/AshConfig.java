@@ -17,8 +17,10 @@ public class AshConfig implements ConfigData {
     public boolean showCoords = true;
 
     public boolean showDirection = true;
-
-    public int align = 0;
-
-    public int verticalAlign = 0;
+    
+    public boolean showLightLevel = true;
+    
+    public boolean showBiome = true;
+    
+    public boolean conciseCoords = false;
 }
