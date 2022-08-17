@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import de.miraisoft.ash2.AshCommands;
+import de.miraisoft.ash2.DirectionEnum;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
@@ -13,6 +14,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.LightType;
 
 @Mixin(InGameHud.class)
@@ -64,7 +66,13 @@ public class InGameHudMixin {
 		BlockPos blockPos = new BlockPos(cameraEntity.getX(), cameraEntity.getBoundingBox().getMin(Direction.Axis.Y),
 				cameraEntity.getZ());
 		if (AshCommands.config.conciseCoords) {
-			String coordsText = String.format("%d / %d / %d", blockPos.getX(), blockPos.getY(), blockPos.getZ());
+			String direction = "";
+			if (AshCommands.config.showDirection) {
+				float degrees = MathHelper.wrapDegrees(cameraEntity.getYaw());
+				DirectionEnum directionEnum = DirectionEnum.getByYawDegrees(degrees);
+				direction += directionEnum.name();
+			}
+			String coordsText = String.format("%d / %d / %d  %s", blockPos.getX(), blockPos.getY(), blockPos.getZ(), direction);
 			client.textRenderer.drawWithShadow(matrixStack, coordsText, TEXT_POS_X, textPosY,
 					AshCommands.config.hudColor);
 		} else {
@@ -96,11 +104,12 @@ public class InGameHudMixin {
 	}
 
 	private void drawDirection(MatrixStack matrixStack, MinecraftClient client, Entity cameraEntity) {
-		if (!AshCommands.config.showDirection)
+		if (!AshCommands.config.showDirection || AshCommands.config.conciseCoords)
 			return;
 		matrixStack.push();
-		Direction direction = cameraEntity.getHorizontalFacing();
-		String ashString = "Direction: " + direction.getName();
+		float degrees = MathHelper.wrapDegrees(cameraEntity.getYaw());
+		DirectionEnum directionEnum = DirectionEnum.getByYawDegrees(degrees);
+		String ashString = "Direction: " + directionEnum.longName;
 
 		client.textRenderer.drawWithShadow(matrixStack, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
 		matrixStack.pop();
