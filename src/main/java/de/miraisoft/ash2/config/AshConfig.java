@@ -22,5 +22,7 @@ public class AshConfig implements ConfigData {
     
     public boolean showBiome = true;
     
+    public boolean showTime = true;
+    
     public boolean conciseCoords = false;
 }

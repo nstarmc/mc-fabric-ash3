@@ -43,6 +43,7 @@ public class InGameHudMixin {
 			drawDirection(matrixStack, client, cameraEntity);
 			drawLightLevel(matrixStack, client, cameraEntity);
 			drawBiome(matrixStack, client, cameraEntity);
+			drawTime(matrixStack, client, cameraEntity);
 		}
 	}
 
@@ -147,6 +148,26 @@ public class InGameHudMixin {
 				cameraEntity.getZ());
 		String biomeKey = client.world.getBiome(blockPos).getKey().get().getValue().toTranslationKey("biome");
 		String ashString = "Biome: " + Text.translatable(biomeKey).getString();
+
+		client.textRenderer.drawWithShadow(matrixStack, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
+		matrixStack.pop();
+
+		textPosY += client.textRenderer.fontHeight + 1;
+	}
+	
+	private void drawTime(MatrixStack matrixStack, MinecraftClient client, Entity cameraEntity) {
+		if (!AshCommands.config.showTime)
+			return;
+		matrixStack.push();
+		// tick 0 and 24000 is 6:00 am
+		int hour = (int) ((client.world.getTimeOfDay() / 1000d) + 6) % 24;
+		int minutes = (int) ((client.world.getTimeOfDay() / 1000d * 60) % 60);
+		String ashString;
+		if (minutes <= 9) {
+			ashString = String.format("Time: %d:0%d", hour, minutes);			
+		} else {
+			ashString = String.format("Time: %d:%d", hour, minutes);
+		}
 
 		client.textRenderer.drawWithShadow(matrixStack, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
 		matrixStack.pop();
