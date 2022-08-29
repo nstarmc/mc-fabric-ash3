@@ -1,6 +1,6 @@
 # ASH 2 - Another Sophisticated HUD
 
-ASH 2 - Another Sophisticated HUD with FPS count, coordinates, light level and biome
+ASH 2 - Another Sophisticated HUD with FPS count, coordinates, (block) light level, biome and time
 
 A Fabric mod for Minecraft
 
