@@ -39,8 +39,7 @@ public class InGameHudMixin {
 
 		if (!client.options.debugEnabled && AshCommands.config.showHud) {
 			drawFps(matrixStack, client, cameraEntity);
-			drawCoords(matrixStack, client, cameraEntity);
-			drawDirection(matrixStack, client, cameraEntity);
+			drawCoordsAndDirection(matrixStack, client, cameraEntity);
 			drawLightLevel(matrixStack, client, cameraEntity);
 			drawBiome(matrixStack, client, cameraEntity);
 			drawTime(matrixStack, client, cameraEntity);
@@ -60,56 +59,51 @@ public class InGameHudMixin {
 		textPosY += client.textRenderer.fontHeight + 1;
 	}
 
-	private void drawCoords(MatrixStack matrixStack, MinecraftClient client, Entity cameraEntity) {
-		if (!AshCommands.config.showCoords || client.hasReducedDebugInfo())
+	private void drawCoordsAndDirection(MatrixStack matrixStack, MinecraftClient client, Entity cameraEntity) {
+		if ((!AshCommands.config.showCoords && !AshCommands.config.showDirection) || client.hasReducedDebugInfo())
 			return;
-		matrixStack.push();
-		BlockPos blockPos = new BlockPos(cameraEntity.getX(), cameraEntity.getBoundingBox().getMin(Direction.Axis.Y),
-				cameraEntity.getZ());
-		if (AshCommands.config.conciseCoords) {
-			String direction = "";
-			if (AshCommands.config.showDirection) {
-				float degrees = MathHelper.wrapDegrees(cameraEntity.getYaw());
-				DirectionEnum directionEnum = DirectionEnum.getByYawDegrees(degrees);
-				direction += directionEnum.name();
+		float degrees = MathHelper.wrapDegrees(cameraEntity.getYaw());
+		DirectionEnum directionEnum = DirectionEnum.getByYawDegrees(degrees);
+		
+		// show coordinates
+		
+		if (AshCommands.config.showCoords) {
+			matrixStack.push();
+			BlockPos blockPos = new BlockPos(cameraEntity.getX(), cameraEntity.getBoundingBox().getMin(Direction.Axis.Y),
+					cameraEntity.getZ());
+			if (AshCommands.config.conciseCoords) {
+				String direction = "";
+				if (AshCommands.config.showDirection) {
+					direction += directionEnum.name();
+				}
+				String coordsText = String.format("%d / %d / %d  %s", blockPos.getX(), blockPos.getY(), blockPos.getZ(), direction);
+				client.textRenderer.drawWithShadow(matrixStack, coordsText, TEXT_POS_X, textPosY,
+						AshCommands.config.hudColor);
+			} else {
+				String xText = String.format("x: %d", blockPos.getX());
+				String yText = String.format("y: %d", blockPos.getY());
+				String zText = String.format("z: %d", blockPos.getZ());
+				
+				xText += directionEnum.getX();
+				zText += directionEnum.getZ();
+				
+				
+				int heightDiff = client.textRenderer.fontHeight + 1;
+				client.textRenderer.drawWithShadow(matrixStack, xText, TEXT_POS_X, textPosY, COLOR_X);
+				textPosY += heightDiff;
+				client.textRenderer.drawWithShadow(matrixStack, yText, TEXT_POS_X, textPosY, COLOR_Y);
+				textPosY += heightDiff;
+				client.textRenderer.drawWithShadow(matrixStack, zText, TEXT_POS_X, textPosY, COLOR_Z);
 			}
-			String coordsText = String.format("%d / %d / %d  %s", blockPos.getX(), blockPos.getY(), blockPos.getZ(), direction);
-			client.textRenderer.drawWithShadow(matrixStack, coordsText, TEXT_POS_X, textPosY,
-					AshCommands.config.hudColor);
-		} else {
-			String xText = String.format("x: %d", blockPos.getX());
-			String yText = String.format("y: %d", blockPos.getY());
-			String zText = String.format("z: %d", blockPos.getZ());
-
-			Direction direction = cameraEntity.getHorizontalFacing();
-			if (Direction.EAST.equals(direction)) {
-				xText += " +";
-			} else if (Direction.WEST.equals(direction)) {
-				xText += " -";
-			} else if (Direction.SOUTH.equals(direction)) {
-				zText += " +";
-			} else if (Direction.NORTH.equals(direction)) {
-				zText += " -";
-			}
-
-			int heightDiff = client.textRenderer.fontHeight + 1;
-			client.textRenderer.drawWithShadow(matrixStack, xText, TEXT_POS_X, textPosY, COLOR_X);
-			textPosY += heightDiff;
-			client.textRenderer.drawWithShadow(matrixStack, yText, TEXT_POS_X, textPosY, COLOR_Y);
-			textPosY += heightDiff;
-			client.textRenderer.drawWithShadow(matrixStack, zText, TEXT_POS_X, textPosY, COLOR_Z);
+			matrixStack.pop();			
+			textPosY += client.textRenderer.fontHeight + 1;
 		}
-		matrixStack.pop();
-
-		textPosY += client.textRenderer.fontHeight + 1;
-	}
-
-	private void drawDirection(MatrixStack matrixStack, MinecraftClient client, Entity cameraEntity) {
+		
+		// show direction
+		
 		if (!AshCommands.config.showDirection || AshCommands.config.conciseCoords)
 			return;
 		matrixStack.push();
-		float degrees = MathHelper.wrapDegrees(cameraEntity.getYaw());
-		DirectionEnum directionEnum = DirectionEnum.getByYawDegrees(degrees);
 		String ashString = "Direction: " + directionEnum.longName;
 
 		client.textRenderer.drawWithShadow(matrixStack, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
@@ -117,7 +111,7 @@ public class InGameHudMixin {
 
 		textPosY += client.textRenderer.fontHeight + 1;
 	}
-
+	
 	private void drawLightLevel(MatrixStack matrixStack, MinecraftClient client, Entity cameraEntity) {
 		if (!AshCommands.config.showLightLevel)
 			return;

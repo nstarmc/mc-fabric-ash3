@@ -36,4 +36,40 @@ public enum DirectionEnum {
 
 		}
 	}
+	
+	public String getX() {
+		if (DirectionEnum.E.equals(this)) {
+			return " ++";
+		} else if (DirectionEnum.NE.equals(this)) {
+			return " +";
+		} else if (DirectionEnum.SE.equals(this)) {
+			return " +";
+		} else if (DirectionEnum.W.equals(this)) {
+			return " --";
+		} else if (DirectionEnum.NW.equals(this)) {
+			return " -";
+		} else if (DirectionEnum.SW.equals(this)) {
+			return " -";
+		} else {
+			return "";
+		}
+	}
+
+	public String getZ() {
+		if (DirectionEnum.S.equals(this)) {
+			return " ++";
+		} else if (DirectionEnum.SE.equals(this)) {
+			return " +";
+		} else if (DirectionEnum.SW.equals(this)) {
+			return " +";
+		} else if (DirectionEnum.N.equals(this)) {
+			return " --";
+		} else if (DirectionEnum.NE.equals(this)) {
+			return " -";
+		} else if (DirectionEnum.NW.equals(this)) {
+			return " -";
+		} else {
+			return "";
+		}
+	}
 }
