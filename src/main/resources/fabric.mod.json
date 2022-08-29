@@ -10,7 +10,7 @@
   "contact": {
     "homepage": "https://www.miraisoft.de/mc-fabric-ash2",
     "sources": "https://github.com/miraisoft-de/mc-fabric-ash",
-    "issues": ""
+    "issues": "https://github.com/miraisoft-de/mc-fabric-ash/issues"
   },
   "license": "MIT",
   "icon": "assets/ash2/icon.png",
