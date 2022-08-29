@@ -7,6 +7,7 @@
   "text.autoconfig.ash2.option.showDirection" : "Show direction",
   "text.autoconfig.ash2.option.showLightLevel" : "Show light level",
   "text.autoconfig.ash2.option.showBiome" : "Show biome",
+  "text.autoconfig.ash2.option.showTime" : "Show time",
   "text.autoconfig.ash2.option.conciseCoords" : "Concise coords",
   "key.ash2.toggleAsh" : "Toggle ASH HUD"
 }

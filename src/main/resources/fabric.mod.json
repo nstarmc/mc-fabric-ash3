@@ -3,7 +3,7 @@
   "id": "ash2",
   "version": "${version}",
   "name": "ASH 2 - Another Sophisticated HUD",
-  "description": "ASH 2 - Another Sophisticated HUD with FPS count, coordinates, light level and biome",
+  "description": "ASH 2 - Another Sophisticated HUD with FPS count, coordinates, light level, biome and time",
   "authors": [
     "umollu, kuuhaku"
   ],
