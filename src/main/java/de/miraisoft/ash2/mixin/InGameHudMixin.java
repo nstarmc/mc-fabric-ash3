@@ -66,8 +66,7 @@ public class InGameHudMixin {
 		// show coordinates
 
 		if (AshCommands.config.showCoords) {
-			BlockPos blockPos = new BlockPos((int) cameraEntity.getX(),
-					(int) cameraEntity.getBoundingBox().getMin(Direction.Axis.Y), (int) cameraEntity.getZ());
+			BlockPos blockPos =  cameraEntity.getBlockPos();
 			if (AshCommands.config.conciseCoords) {
 				String direction = "";
 				if (AshCommands.config.showDirection) {
@@ -111,8 +110,7 @@ public class InGameHudMixin {
 		if (!AshCommands.config.showLightLevel)
 			return;
 
-		BlockPos blockPos = new BlockPos((int) cameraEntity.getX(),
-				(int) cameraEntity.getBoundingBox().getMin(Direction.Axis.Y), (int) cameraEntity.getZ());
+		BlockPos blockPos =  cameraEntity.getBlockPos();
 		int lightLevel = client.world.getLightLevel(LightType.BLOCK, blockPos);
 		String ashString = "Light Level: " + lightLevel;
 
@@ -130,8 +128,7 @@ public class InGameHudMixin {
 		if (!AshCommands.config.showBiome)
 			return;
 
-		BlockPos blockPos = new BlockPos((int) cameraEntity.getX(),
-				(int) cameraEntity.getBoundingBox().getMin(Direction.Axis.Y), (int) cameraEntity.getZ());
+		BlockPos blockPos =  cameraEntity.getBlockPos();
 		String biomeKey = client.world.getBiome(blockPos).getKey().get().getValue().toTranslationKey("biome");
 		String ashString = "Biome: " + Text.translatable(biomeKey).getString();
 
