@@ -8,8 +8,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import de.miraisoft.ash2.AshCommands;
 import de.miraisoft.ash2.DirectionEnum;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
@@ -26,40 +26,38 @@ public class InGameHudMixin {
 	private static final int COLOR_Y = 0xffffdd;
 	private static final int COLOR_Z = 0xddddff;
 
-	private static final float PADDING = 5;
-	private static final float TEXT_POS_X = PADDING;
-	private float textPosY = PADDING;
+	private static final int PADDING = 5;
+	private static final int TEXT_POS_X = PADDING;
+	private int textPosY = PADDING;
 
 	@Inject(at = @At("TAIL"), method = "render")
-	public void render(MatrixStack matrixStack, float tickDelta, CallbackInfo info) {
+	public void render(DrawContext drawContext, float tickDelta, CallbackInfo info) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		Entity cameraEntity = client.getCameraEntity();
 
 		textPosY = PADDING;
 
 		if (!client.options.debugEnabled && AshCommands.config.showHud) {
-			drawFps(matrixStack, client, cameraEntity);
-			drawCoordsAndDirection(matrixStack, client, cameraEntity);
-			drawLightLevel(matrixStack, client, cameraEntity);
-			drawBiome(matrixStack, client, cameraEntity);
-			drawTime(matrixStack, client, cameraEntity);
+			drawFps(drawContext, client, cameraEntity);
+			drawCoordsAndDirection(drawContext, client, cameraEntity);
+			drawLightLevel(drawContext, client, cameraEntity);
+			drawBiome(drawContext, client, cameraEntity);
+			drawTime(drawContext, client, cameraEntity);
 		}
 	}
 
-	private void drawFps(MatrixStack matrixStack, MinecraftClient client, Entity cameraEntity) {
+	private void drawFps(DrawContext drawContext, MinecraftClient client, Entity cameraEntity) {
 		if (!AshCommands.config.showFps)
 			return;
-		matrixStack.push();
 		String ashString = String.format("%d fps",
 				((MinecraftClientMixin) MinecraftClient.getInstance()).getCurrentFps());
 
-		client.textRenderer.drawWithShadow(matrixStack, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
-		matrixStack.pop();
+		drawContext.drawTextWithShadow(client.textRenderer, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
 
 		textPosY += client.textRenderer.fontHeight + 1;
 	}
 
-	private void drawCoordsAndDirection(MatrixStack matrixStack, MinecraftClient client, Entity cameraEntity) {
+	private void drawCoordsAndDirection(DrawContext drawContext, MinecraftClient client, Entity cameraEntity) {
 		if ((!AshCommands.config.showCoords && !AshCommands.config.showDirection) || client.hasReducedDebugInfo())
 			return;
 		float degrees = MathHelper.wrapDegrees(cameraEntity.getYaw());
@@ -68,7 +66,6 @@ public class InGameHudMixin {
 		// show coordinates
 
 		if (AshCommands.config.showCoords) {
-			matrixStack.push();
 			BlockPos blockPos = new BlockPos((int) cameraEntity.getX(),
 					(int) cameraEntity.getBoundingBox().getMin(Direction.Axis.Y), (int) cameraEntity.getZ());
 			if (AshCommands.config.conciseCoords) {
@@ -78,7 +75,7 @@ public class InGameHudMixin {
 				}
 				String coordsText = String.format("%d / %d / %d  %s", blockPos.getX(), blockPos.getY(), blockPos.getZ(),
 						direction);
-				client.textRenderer.drawWithShadow(matrixStack, coordsText, TEXT_POS_X, textPosY,
+				drawContext.drawTextWithShadow(client.textRenderer, coordsText, TEXT_POS_X, textPosY,
 						AshCommands.config.hudColor);
 			} else {
 				String xText = String.format("x: %d", blockPos.getX());
@@ -89,13 +86,12 @@ public class InGameHudMixin {
 				zText += directionEnum.getZ();
 
 				int heightDiff = client.textRenderer.fontHeight + 1;
-				client.textRenderer.drawWithShadow(matrixStack, xText, TEXT_POS_X, textPosY, COLOR_X);
+				drawContext.drawTextWithShadow(client.textRenderer, xText, TEXT_POS_X, textPosY, COLOR_X);
 				textPosY += heightDiff;
-				client.textRenderer.drawWithShadow(matrixStack, yText, TEXT_POS_X, textPosY, COLOR_Y);
+				drawContext.drawTextWithShadow(client.textRenderer, yText, TEXT_POS_X, textPosY, COLOR_Y);
 				textPosY += heightDiff;
-				client.textRenderer.drawWithShadow(matrixStack, zText, TEXT_POS_X, textPosY, COLOR_Z);
+				drawContext.drawTextWithShadow(client.textRenderer, zText, TEXT_POS_X, textPosY, COLOR_Z);
 			}
-			matrixStack.pop();
 			textPosY += client.textRenderer.fontHeight + 1;
 		}
 
@@ -103,19 +99,17 @@ public class InGameHudMixin {
 
 		if (!AshCommands.config.showDirection || AshCommands.config.conciseCoords)
 			return;
-		matrixStack.push();
+		
 		String ashString = "Direction: " + directionEnum.longName;
 
-		client.textRenderer.drawWithShadow(matrixStack, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
-		matrixStack.pop();
+		drawContext.drawTextWithShadow(client.textRenderer, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
 
 		textPosY += client.textRenderer.fontHeight + 1;
 	}
 
-	private void drawLightLevel(MatrixStack matrixStack, MinecraftClient client, Entity cameraEntity) {
+	private void drawLightLevel(DrawContext drawContext, MinecraftClient client, Entity cameraEntity) {
 		if (!AshCommands.config.showLightLevel)
 			return;
-		matrixStack.push();
 
 		BlockPos blockPos = new BlockPos((int) cameraEntity.getX(),
 				(int) cameraEntity.getBoundingBox().getMin(Direction.Axis.Y), (int) cameraEntity.getZ());
@@ -127,32 +121,29 @@ public class InGameHudMixin {
 			color = 0xffaaaa;
 		}
 
-		float textPosX = client.getWindow().getScaledWidth() - client.textRenderer.getWidth(ashString) - 5;
+		int textPosX = client.getWindow().getScaledWidth() - client.textRenderer.getWidth(ashString) - 5;
 
-		client.textRenderer.drawWithShadow(matrixStack, ashString, textPosX, PADDING, color);
-		matrixStack.pop();
+		drawContext.drawTextWithShadow(client.textRenderer, ashString, textPosX, PADDING, color);
 	}
 
-	private void drawBiome(MatrixStack matrixStack, MinecraftClient client, Entity cameraEntity) {
+	private void drawBiome(DrawContext drawContext, MinecraftClient client, Entity cameraEntity) {
 		if (!AshCommands.config.showBiome)
 			return;
-		matrixStack.push();
 
 		BlockPos blockPos = new BlockPos((int) cameraEntity.getX(),
 				(int) cameraEntity.getBoundingBox().getMin(Direction.Axis.Y), (int) cameraEntity.getZ());
 		String biomeKey = client.world.getBiome(blockPos).getKey().get().getValue().toTranslationKey("biome");
 		String ashString = "Biome: " + Text.translatable(biomeKey).getString();
 
-		client.textRenderer.drawWithShadow(matrixStack, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
-		matrixStack.pop();
+		drawContext.drawTextWithShadow(client.textRenderer, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
 
 		textPosY += client.textRenderer.fontHeight + 1;
 	}
 
-	private void drawTime(MatrixStack matrixStack, MinecraftClient client, Entity cameraEntity) {
+	private void drawTime(DrawContext drawContext, MinecraftClient client, Entity cameraEntity) {
 		if (!AshCommands.config.showTime)
 			return;
-		matrixStack.push();
+		
 		// tick 0 and 24000 is 6:00 am
 		int hour = (int) ((client.world.getTimeOfDay() / 1000d) + 6) % 24;
 		int minutes = (int) ((client.world.getTimeOfDay() / 1000d * 60) % 60);
@@ -163,8 +154,7 @@ public class InGameHudMixin {
 			ashString = String.format("Time: %d:%d", hour, minutes);
 		}
 
-		client.textRenderer.drawWithShadow(matrixStack, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
-		matrixStack.pop();
+		drawContext.drawTextWithShadow(client.textRenderer, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
 
 		textPosY += client.textRenderer.fontHeight + 1;
 	}
