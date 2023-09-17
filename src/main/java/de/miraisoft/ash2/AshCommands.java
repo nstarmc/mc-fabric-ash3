@@ -88,9 +88,9 @@ public class AshCommands {
         
 		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
 			dispatcher.register(ClientCommandManager.literal(COMMAND_BACKGROUND_COLOR)
-	            .then(ClientCommandManager.argument("colorInDecimal", IntegerArgumentType.integer())
+	            .then(ClientCommandManager.argument("colorAsARGBinteger", IntegerArgumentType.integer())
 	                		.executes(context -> {
-	                			int color = IntegerArgumentType.getInteger(context,"colorInDecimal");
+	                			int color = IntegerArgumentType.getInteger(context,"colorAsARGBinteger");
 	                			
 	                			config.hudBackgroundColor = color;
 	                			AshMod.configManager.save();
