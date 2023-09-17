@@ -15,9 +15,11 @@ public class AshCommands {
 	private static final String COMMAND_COORDS = "ash2togglecoords";
 	private static final String COMMAND_DIRECTION = "ash2toggledirection";
 	private static final String COMMAND_COLOR = "ash2color";
+	private static final String COMMAND_BACKGROUND_COLOR = "ash2backgroundcolor";
 	private static final String COMMAND_LIGHTLEVEL = "ash2togglelightlevel";
 	private static final String COMMAND_TIME = "ash2toggletime";
 	private static final String COMMAND_CONCISE_COORDS = "ash2toggleconcisecoords";
+	private static final String COMMAND_TOGGLE_BACKGROUND = "ash2togglebackground";
 
     public static AshConfig config;
 
@@ -85,6 +87,18 @@ public class AshCommands {
 		});
         
 		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
+			dispatcher.register(ClientCommandManager.literal(COMMAND_BACKGROUND_COLOR)
+	            .then(ClientCommandManager.argument("colorInDecimal", IntegerArgumentType.integer())
+	                		.executes(context -> {
+	                			int color = IntegerArgumentType.getInteger(context,"colorInDecimal");
+	                			
+	                			config.hudBackgroundColor = color;
+	                			AshMod.configManager.save();
+	                			return 1;
+	                		})));
+		});
+		
+		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
 			dispatcher.register(ClientCommandManager.literal(COMMAND_LIGHTLEVEL)
 	            .executes(context -> {
                 config.showLightLevel = !config.showLightLevel;
@@ -106,6 +120,15 @@ public class AshCommands {
 			dispatcher.register(ClientCommandManager.literal(COMMAND_CONCISE_COORDS)
 	            .executes(context -> {
                 config.conciseCoords = !config.conciseCoords;
+                AshMod.configManager.save();
+                return 1;
+            }));
+		});
+		
+		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
+			dispatcher.register(ClientCommandManager.literal(COMMAND_TOGGLE_BACKGROUND)
+	            .executes(context -> {
+                config.showBackground = !config.showBackground;
                 AshMod.configManager.save();
                 return 1;
             }));

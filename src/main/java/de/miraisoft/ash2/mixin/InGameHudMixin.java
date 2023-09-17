@@ -13,7 +13,6 @@ import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.entity.Entity;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.LightType;
 
@@ -53,6 +52,10 @@ public class InGameHudMixin {
 				((MinecraftClientMixin) MinecraftClient.getInstance()).getCurrentFps());
 
 		drawContext.drawTextWithShadow(client.textRenderer, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
+		
+		if (AshCommands.config.showBackground)
+			drawContext.fill(TEXT_POS_X, textPosY, TEXT_POS_X + 6 * ashString.length(), 
+					textPosY + client.textRenderer.fontHeight - 1, AshCommands.config.hudBackgroundColor);
 
 		textPosY += client.textRenderer.fontHeight + 1;
 	}
@@ -76,6 +79,9 @@ public class InGameHudMixin {
 						direction);
 				drawContext.drawTextWithShadow(client.textRenderer, coordsText, TEXT_POS_X, textPosY,
 						AshCommands.config.hudColor);
+				if (AshCommands.config.showBackground)
+					drawContext.fill(TEXT_POS_X, textPosY, TEXT_POS_X + 6 * coordsText.length(), 
+							textPosY + client.textRenderer.fontHeight - 1, AshCommands.config.hudBackgroundColor);
 			} else {
 				String xText = String.format("x: %d", blockPos.getX());
 				String yText = String.format("y: %d", blockPos.getY());
@@ -86,10 +92,21 @@ public class InGameHudMixin {
 
 				int heightDiff = client.textRenderer.fontHeight + 1;
 				drawContext.drawTextWithShadow(client.textRenderer, xText, TEXT_POS_X, textPosY, COLOR_X);
+				if (AshCommands.config.showBackground)
+					drawContext.fill(TEXT_POS_X, textPosY, TEXT_POS_X + 6 * xText.length(), 
+							textPosY + client.textRenderer.fontHeight - 1, AshCommands.config.hudBackgroundColor);
+				
 				textPosY += heightDiff;
 				drawContext.drawTextWithShadow(client.textRenderer, yText, TEXT_POS_X, textPosY, COLOR_Y);
+				if (AshCommands.config.showBackground)
+					drawContext.fill(TEXT_POS_X, textPosY, TEXT_POS_X + 6 * yText.length(), 
+							textPosY + client.textRenderer.fontHeight - 1, AshCommands.config.hudBackgroundColor);
+				
 				textPosY += heightDiff;
 				drawContext.drawTextWithShadow(client.textRenderer, zText, TEXT_POS_X, textPosY, COLOR_Z);
+				if (AshCommands.config.showBackground)
+					drawContext.fill(TEXT_POS_X, textPosY, TEXT_POS_X + 6 * zText.length(), 
+							textPosY + client.textRenderer.fontHeight - 1, AshCommands.config.hudBackgroundColor);
 			}
 			textPosY += client.textRenderer.fontHeight + 1;
 		}
@@ -102,6 +119,9 @@ public class InGameHudMixin {
 		String ashString = "Direction: " + directionEnum.longName;
 
 		drawContext.drawTextWithShadow(client.textRenderer, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
+		if (AshCommands.config.showBackground)
+			drawContext.fill(TEXT_POS_X, textPosY, TEXT_POS_X + 6 * ashString.length(), 
+					textPosY + client.textRenderer.fontHeight - 1, AshCommands.config.hudBackgroundColor);
 
 		textPosY += client.textRenderer.fontHeight + 1;
 	}
@@ -122,6 +142,9 @@ public class InGameHudMixin {
 		int textPosX = client.getWindow().getScaledWidth() - client.textRenderer.getWidth(ashString) - 5;
 
 		drawContext.drawTextWithShadow(client.textRenderer, ashString, textPosX, PADDING, color);
+		if (AshCommands.config.showBackground)
+			drawContext.fill(textPosX, PADDING, textPosX + 6 * ashString.length(), 
+					PADDING + client.textRenderer.fontHeight - 1, AshCommands.config.hudBackgroundColor);
 	}
 
 	private void drawBiome(DrawContext drawContext, MinecraftClient client, Entity cameraEntity) {
@@ -133,6 +156,9 @@ public class InGameHudMixin {
 		String ashString = "Biome: " + Text.translatable(biomeKey).getString();
 
 		drawContext.drawTextWithShadow(client.textRenderer, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
+		if (AshCommands.config.showBackground)
+			drawContext.fill(TEXT_POS_X, textPosY, TEXT_POS_X + 6 * ashString.length(), 
+					textPosY + client.textRenderer.fontHeight - 1, AshCommands.config.hudBackgroundColor);
 
 		textPosY += client.textRenderer.fontHeight + 1;
 	}
@@ -152,6 +178,9 @@ public class InGameHudMixin {
 		}
 
 		drawContext.drawTextWithShadow(client.textRenderer, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
+		if (AshCommands.config.showBackground)
+			drawContext.fill(TEXT_POS_X, textPosY, TEXT_POS_X + 6 * ashString.length(), 
+					textPosY + client.textRenderer.fontHeight - 1, AshCommands.config.hudBackgroundColor);
 
 		textPosY += client.textRenderer.fontHeight + 1;
 	}
