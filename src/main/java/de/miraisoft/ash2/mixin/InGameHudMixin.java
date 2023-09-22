@@ -36,7 +36,7 @@ public class InGameHudMixin {
 
 		textPosY = PADDING;
 
-		if (!client.options.debugEnabled && AshCommands.config.showHud) {
+		if (!client.getDebugHud().shouldShowDebugHud() && AshCommands.config.showHud) {
 			drawFps(drawContext, client, cameraEntity);
 			drawCoordsAndDirection(drawContext, client, cameraEntity);
 			drawLightLevel(drawContext, client, cameraEntity);
