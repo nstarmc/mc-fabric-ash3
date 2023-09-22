@@ -12,7 +12,9 @@ public class AshConfig implements ConfigData {
     @ConfigEntry.ColorPicker
     public int hudColor = 0xeeeeee;
     
-    // Color: alpha / red / green / blue
+    /**
+     * ARGB color: alpha / red / green / blue
+     */
     public int hudBackgroundColor = 0x77000000;
 
     public boolean showFps = true;
