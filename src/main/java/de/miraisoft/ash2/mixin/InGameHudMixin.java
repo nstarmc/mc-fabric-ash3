@@ -48,8 +48,7 @@ public class InGameHudMixin {
 	private void drawFps(DrawContext drawContext, MinecraftClient client, Entity cameraEntity) {
 		if (!AshCommands.config.showFps)
 			return;
-		String ashString = String.format("%d fps",
-				((MinecraftClientMixin) MinecraftClient.getInstance()).getCurrentFps());
+		String ashString = String.format("%d fps", client.getCurrentFps());
 
 		drawContext.drawTextWithShadow(client.textRenderer, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
 		
