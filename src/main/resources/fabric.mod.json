@@ -1,35 +1,36 @@
 {
   "schemaVersion": 1,
-  "id": "umollu_ash",
+  "id": "ash3",
   "version": "${version}",
-  "name": "ASH - Another Simple HUD",
-  "description": "ASH - Another Simple HUD with FPS count and coordinates.",
+  "name": "ASH 3(compile by nstarmc) - Another Sophisticated HUD",
+  "description": "ASH 3(compile by nstarmc) - Another Sophisticated HUD with FPS count, coordinates, light level, biome and time",
   "authors": [
-    "umollu"
+    "kuuhaku, umollu","luluxiaoyu"
   ],
   "contact": {
-    "homepage": "https://umollu.com/",
-    "sources": "https://github.com/umollu/ash",
-    "issues": "https://github.com/umollu/ash/issues"
+    "homepage": "https://github.com/nstarmc/mc-fabric-ash",
+    "sources": "https://github.com/nstarmc/mc-fabric-ash",
+    "issues": "https://github.com/nstarmc/mc-fabric-ash/issues"
   },
   "license": "MIT",
-  "icon": "assets/umollu_ash/icon.png",
+  "icon": "assets/ash3/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "com.umollu.ash.AshMod"
+      "cn.nstarmc.ash3.AshMod"
     ],
     "modmenu": [
-      "com.umollu.ash.config.AshMenuIntegration"
+      "cn.nstarmc.ash3.config.AshMenuIntegration"
     ]
   },
   "mixins": [
-    "umollu_ash.mixins.json"
+    "ash3.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.8",
+    "fabricloader": ">=0.14.22",
     "fabric": "*",
-    "minecraft": "1.19.x",
-    "java": ">=17"
+    "minecraft": ">=1.21",
+    "java": ">=21",
+    "cloth-config": ">=15"
   }
 }
