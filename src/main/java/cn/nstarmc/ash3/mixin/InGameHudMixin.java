@@ -1,7 +1,7 @@
-package cn.nstarmc.ash2.mixin;
+package cn.nstarmc.ash3.mixin;
 
-import cn.nstarmc.ash2.AshCommands;
-import cn.nstarmc.ash2.DirectionEnum;
+import cn.nstarmc.ash3.AshCommands;
+import cn.nstarmc.ash3.DirectionEnum;
 import net.minecraft.client.render.RenderTickCounter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

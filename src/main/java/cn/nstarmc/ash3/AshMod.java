@@ -1,6 +1,6 @@
-package cn.nstarmc.ash2;
+package cn.nstarmc.ash3;
 
-import cn.nstarmc.ash2.config.AshConfig;
+import cn.nstarmc.ash3.config.AshConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigManager;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;

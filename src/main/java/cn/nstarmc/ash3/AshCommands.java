@@ -1,8 +1,8 @@
-package cn.nstarmc.ash2;
+package cn.nstarmc.ash3;
 
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 
-import cn.nstarmc.ash2.config.AshConfig;
+import cn.nstarmc.ash3.config.AshConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;

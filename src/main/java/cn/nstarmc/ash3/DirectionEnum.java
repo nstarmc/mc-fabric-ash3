@@ -1,4 +1,4 @@
-package cn.nstarmc.ash2;
+package cn.nstarmc.ash3;
 
 public enum DirectionEnum {
 

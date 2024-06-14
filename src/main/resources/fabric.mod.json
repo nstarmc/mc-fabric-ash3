@@ -13,18 +13,18 @@
     "issues": "https://github.com/nstarmc/mc-fabric-ash/issues"
   },
   "license": "MIT",
-  "icon": "assets/ash2/icon.png",
+  "icon": "assets/ash3/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "cn.nstarmc.ash2.AshMod"
+      "cn.nstarmc.ash3.AshMod"
     ],
     "modmenu": [
-      "cn.nstarmc.ash2.config.AshMenuIntegration"
+      "cn.nstarmc.ash3.config.AshMenuIntegration"
     ]
   },
   "mixins": [
-    "ash2.mixins.json"
+    "ash3.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.14.22",

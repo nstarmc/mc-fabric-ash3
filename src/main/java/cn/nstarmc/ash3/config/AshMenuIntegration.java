@@ -1,4 +1,4 @@
-package cn.nstarmc.ash2.config;
+package cn.nstarmc.ash3.config;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
