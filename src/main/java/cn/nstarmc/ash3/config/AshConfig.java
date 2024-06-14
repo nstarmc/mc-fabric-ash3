@@ -1,6 +1,6 @@
-package com.umollu.ash.config;
+package cn.nstarmc.ash3.config;
 
-import com.umollu.ash.AshMod;
+import cn.nstarmc.ash3.AshMod;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
@@ -11,14 +11,25 @@ public class AshConfig implements ConfigData {
 
     @ConfigEntry.ColorPicker
     public int hudColor = 0xeeeeee;
+    
+    /**
+     * ARGB color: alpha / red / green / blue
+     */
+    public int hudBackgroundColor = 0x77000000;
 
     public boolean showFps = true;
 
     public boolean showCoords = true;
 
     public boolean showDirection = true;
-
-    public int align = 0;
-
-    public int verticalAlign = 0;
+    
+    public boolean showLightLevel = true;
+    
+    public boolean showBiome = true;
+    
+    public boolean showTime = true;
+    
+    public boolean conciseCoords = false;
+    
+    public boolean showBackground = true;
 }

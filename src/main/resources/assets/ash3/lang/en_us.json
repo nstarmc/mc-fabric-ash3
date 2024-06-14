@@ -1,0 +1,15 @@
+{
+  "text.autoconfig.ash2.title" : "ASH Config",
+  "text.autoconfig.ash2.option.showHud" : "Show HUD",
+  "text.autoconfig.ash2.option.hudColor" : "HUD text color",
+  "text.autoconfig.ash2.option.hudBackgroundColor" : "HUD background value",
+  "text.autoconfig.ash2.option.showFps" : "Show FPS",
+  "text.autoconfig.ash2.option.showCoords" : "Show coordinates",
+  "text.autoconfig.ash2.option.showDirection" : "Show direction",
+  "text.autoconfig.ash2.option.showLightLevel" : "Show light level",
+  "text.autoconfig.ash2.option.showBiome" : "Show biome",
+  "text.autoconfig.ash2.option.showTime" : "Show time",
+  "text.autoconfig.ash2.option.conciseCoords" : "Concise coords",
+  "text.autoconfig.ash2.option.showBackground" : "Show HUD background",
+  "key.ash2.toggleAsh" : "Toggle ASH HUD"
+}
