@@ -1,0 +1,15 @@
+{
+  "text.autoconfig.ash2.title" : "ASH3配置",
+  "text.autoconfig.ash2.option.showHud" : "显示游戏HUD",
+  "text.autoconfig.ash2.option.hudColor" : "HUD文字颜色",
+  "text.autoconfig.ash2.option.hudBackgroundColor" : "HUD背景颜色",
+  "text.autoconfig.ash2.option.showFps" : "显示FPS",
+  "text.autoconfig.ash2.option.showCoords" : "显示坐标",
+  "text.autoconfig.ash2.option.showDirection" : "显示反向",
+  "text.autoconfig.ash2.option.showLightLevel" : "显示光照等级",
+  "text.autoconfig.ash2.option.showBiome" : "显示生物群系",
+  "text.autoconfig.ash2.option.showTime" : "显示时间",
+  "text.autoconfig.ash2.option.conciseCoords" : "简单坐标",
+  "text.autoconfig.ash2.option.showBackground" : "显示HUD背景色",
+  "key.ash2.toggleAsh" : "切换 ASH HUD 是否显示"
+}
