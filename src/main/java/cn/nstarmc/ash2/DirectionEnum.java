@@ -1,4 +1,4 @@
-package de.miraisoft.ash2;
+package cn.nstarmc.ash2;
 
 public enum DirectionEnum {
 

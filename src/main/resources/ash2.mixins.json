@@ -1,8 +1,8 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "de.miraisoft.ash2.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "package": "cn.nstarmc.ash2.mixin",
+  "compatibilityLevel": "JAVA_21",
   "client": [
     "InGameHudMixin",
     "MinecraftClientMixin"

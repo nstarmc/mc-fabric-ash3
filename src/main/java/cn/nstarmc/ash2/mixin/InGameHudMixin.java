@@ -1,12 +1,13 @@
-package de.miraisoft.ash2.mixin;
+package cn.nstarmc.ash2.mixin;
 
+import cn.nstarmc.ash2.AshCommands;
+import cn.nstarmc.ash2.DirectionEnum;
+import net.minecraft.client.render.RenderTickCounter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import de.miraisoft.ash2.AshCommands;
-import de.miraisoft.ash2.DirectionEnum;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -30,7 +31,7 @@ public class InGameHudMixin {
 	private int textPosY = PADDING;
 
 	@Inject(at = @At("TAIL"), method = "render")
-	public void render(DrawContext drawContext, float tickDelta, CallbackInfo info) {
+	public void render(DrawContext drawContext, RenderTickCounter tickCounter, CallbackInfo ci) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		Entity cameraEntity = client.getCameraEntity();
 
@@ -44,6 +45,7 @@ public class InGameHudMixin {
 			drawTime(drawContext, client, cameraEntity);
 		}
 	}
+
 
 	private void drawFps(DrawContext drawContext, MinecraftClient client, Entity cameraEntity) {
 		if (!AshCommands.config.showFps)

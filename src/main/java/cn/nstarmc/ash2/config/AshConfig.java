@@ -1,6 +1,6 @@
-package de.miraisoft.ash2.config;
+package cn.nstarmc.ash2.config;
 
-import de.miraisoft.ash2.AshMod;
+import cn.nstarmc.ash2.AshMod;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
