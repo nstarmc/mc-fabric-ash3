@@ -9,17 +9,17 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallba
 
 public class AshCommands {
 	
-	private static final String COMMAND_TOGGLE = "ash2toggle";
-	private static final String COMMAND_RESET = "ash2reset";
-	private static final String COMMAND_FPS = "ash2togglefps";
-	private static final String COMMAND_COORDS = "ash2togglecoords";
-	private static final String COMMAND_DIRECTION = "ash2toggledirection";
-	private static final String COMMAND_COLOR = "ash2color";
-	private static final String COMMAND_BACKGROUND_COLOR = "ash2backgroundcolor";
-	private static final String COMMAND_LIGHTLEVEL = "ash2togglelightlevel";
-	private static final String COMMAND_TIME = "ash2toggletime";
-	private static final String COMMAND_CONCISE_COORDS = "ash2toggleconcisecoords";
-	private static final String COMMAND_TOGGLE_BACKGROUND = "ash2togglebackground";
+	private static final String COMMAND_TOGGLE = "ash3toggle";
+	private static final String COMMAND_RESET = "ash3reset";
+	private static final String COMMAND_FPS = "ash3togglefps";
+	private static final String COMMAND_COORDS = "ash3togglecoords";
+	private static final String COMMAND_DIRECTION = "ash3toggledirection";
+	private static final String COMMAND_COLOR = "ash3color";
+	private static final String COMMAND_BACKGROUND_COLOR = "ash3backgroundcolor";
+	private static final String COMMAND_LIGHTLEVEL = "ash3togglelightlevel";
+	private static final String COMMAND_TIME = "ash3toggletime";
+	private static final String COMMAND_CONCISE_COORDS = "ash3toggleconcisecoords";
+	private static final String COMMAND_TOGGLE_BACKGROUND = "ash3togglebackground";
 
     public static AshConfig config;
 

@@ -13,14 +13,14 @@ import net.minecraft.client.util.InputUtil;
 
 public class AshMod implements ClientModInitializer {
 
-    public static final String MOD_ID = "ash2";
+    public static final String MOD_ID = "ash3";
     public static ConfigManager<AshConfig> configManager;
 
     @Override
     public void onInitializeClient() {
         configManager = (ConfigManager<AshConfig>) AutoConfig.register(AshConfig.class, GsonConfigSerializer::new);
 
-        KeyBinding toggleAsh = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.ash2.toggleAsh", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "key.categories.misc"));
+        KeyBinding toggleAsh = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.ash3.toggleAsh", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "key.categories.misc"));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (toggleAsh.wasPressed()) {

@@ -1,9 +1,18 @@
 package cn.nstarmc.ash3;
 
+import net.minecraft.client.resource.language.I18n;
+
 public enum DirectionEnum {
 
-	N("North"), NE("North-east"), E("East"), SE("South-east"), S("South"), SW("South-west"), W("West"),
-	NW("North-west");
+	N(I18n.translate("direction.north")),
+	NE(I18n.translate("direction.northeast")),
+	E(I18n.translate("direction.east")),
+	SE(I18n.translate("direction.southeast")),
+	S(I18n.translate("direction.south")),
+	SW(I18n.translate("direction.southwest")),
+	W(I18n.translate("direction.west")),
+	NW(I18n.translate("direction.northwest"));
+
 
 	public String longName;
 

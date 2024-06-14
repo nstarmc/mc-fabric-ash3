@@ -3,6 +3,7 @@ package cn.nstarmc.ash3.mixin;
 import cn.nstarmc.ash3.AshCommands;
 import cn.nstarmc.ash3.DirectionEnum;
 import net.minecraft.client.render.RenderTickCounter;
+import net.minecraft.client.resource.language.I18n;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -117,7 +118,7 @@ public class InGameHudMixin {
 		if (!AshCommands.config.showDirection || AshCommands.config.conciseCoords)
 			return;
 		
-		String ashString = "Direction: " + directionEnum.longName;
+		String ashString = I18n.translate("text.ash3.ui.direction") + directionEnum.longName;
 
 		drawContext.drawTextWithShadow(client.textRenderer, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
 		if (AshCommands.config.showBackground)
@@ -133,7 +134,7 @@ public class InGameHudMixin {
 
 		BlockPos blockPos =  cameraEntity.getBlockPos();
 		int lightLevel = client.world.getLightLevel(LightType.BLOCK, blockPos);
-		String ashString = "Light Level: " + lightLevel;
+		String ashString = I18n.translate("text.ash3.ui.lightlevel") + lightLevel;
 
 		int color = AshCommands.config.hudColor;
 		if (lightLevel == 0) {
@@ -154,7 +155,7 @@ public class InGameHudMixin {
 
 		BlockPos blockPos =  cameraEntity.getBlockPos();
 		String biomeKey = client.world.getBiome(blockPos).getKey().get().getValue().toTranslationKey("biome");
-		String ashString = "Biome: " + Text.translatable(biomeKey).getString();
+		String ashString = I18n.translate("text.ash3.ui.biome") + Text.translatable(biomeKey).getString();
 
 		drawContext.drawTextWithShadow(client.textRenderer, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
 		if (AshCommands.config.showBackground)
@@ -173,9 +174,9 @@ public class InGameHudMixin {
 		int minutes = (int) ((client.world.getTimeOfDay() / 1000d * 60) % 60);
 		String ashString;
 		if (minutes <= 9) {
-			ashString = String.format("Time: %d:0%d", hour, minutes);
+			ashString = String.format(I18n.translate("text.ash3.ui.time") + "%d:0%d", hour, minutes);
 		} else {
-			ashString = String.format("Time: %d:%d", hour, minutes);
+			ashString = String.format(I18n.translate("text.ash3.ui.time") + "%d:%d", hour, minutes);
 		}
 
 		drawContext.drawTextWithShadow(client.textRenderer, ashString, TEXT_POS_X, textPosY, AshCommands.config.hudColor);
